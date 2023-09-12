@@ -15,16 +15,23 @@ export const initialJobs = [
     startDate: "<Start date>",
     endDate: "<End date>",
     location: "<Location",
+    // tasks: [
+    //   {
+    //     id: 0,
+    //     text: "<Responsibilities>",
+    //   },
+    // ],
   },
 ];
 
 export const initialTasks = [
   {
-    jobId: 0,
-    tasks: [
-      "First responsibility",
-      "Second responsibility",
-      "Third responsibility",
+    id: 0,
+    items: [
+      {
+        id: 0,
+        text: "<Responsibilities>",
+      },
     ],
   },
 ];

@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import Tasks from "./Tasks";
 
 export default function Job({ jobId, jobs, setJobs }) {
   const [editing, setEditing] = useState(false);
@@ -42,13 +43,7 @@ export default function Job({ jobId, jobs, setJobs }) {
           />
         );
       })}
-      {/* {job.tasks.map((task, index) => (
-        <input
-          key={task.id}
-          value={task.value}
-          onChange={(e) => taskHandler(e, index)}
-        />
-      ))} */}
+      <Tasks id={jobId} editing={editing} />
       <button type="submit">Submit</button>
     </form>
   ) : (
@@ -60,11 +55,7 @@ export default function Job({ jobId, jobs, setJobs }) {
         <p>{job.location}</p>
         <p>{job.startDate}</p>
         <p>{job.endDate}</p>
-        {/* <ul>
-          {job.tasks.map((task) => (
-            <li key={task.id}>{task.value}</li>
-          ))}
-        </ul> */}
+        <Tasks id={jobId} editing={editing} />
       </div>
     </>
   );
