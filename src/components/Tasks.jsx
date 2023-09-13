@@ -1,60 +1,65 @@
 /* eslint-disable react/prop-types */
-// import { useState } from "react";
+import { useState } from "react";
 // import { initialTasks } from "../assets/initial-data";
 
-export default function Tasks({ taskId, editing, tasks, setTasks }) {
+export default function Tasks({ taskId, tasks, setTasks }) {
+  const [editing, setEditing] = useState(false);
   const task = tasks.find((task) => task.id === taskId);
 
-  let itemId = 1;
-
-  // function changeHandler(e, itemId) {
-  //   const newText = e.target.value;
-  //   const newItems = task.items.map((item) => {
-  //     if (item.id === itemId) {
-  //       return { ...item, text: newText };
-  //     } else return { ...item };
-  //   });
-  //   const newTasks = tasks.map((aTask) => {
-  //     if (aTask.id === task.id) {
-  //       return { ...aTask, items: newItems };
-  //     } else return { ...aTask };
-  //   });
-  //   setTasks(newTasks);
+  // function addItem() {
+  //   setTasks(
+  //     tasks.filter((task) => {
+  //       if (task.id === taskId) {
+  //         return {
+  //           ...task,
+  //           items: [
+  //             ...task.items,
+  //             { id: itemId, description: "<New responsibility>" },
+  //           ],
+  //         };
+  //       } else return { ...task };
+  //     })
+  //   );
+  //   itemId += 1;
   // }
 
-  function addItem() {
-    setTasks(
-      tasks.filter((task) => {
-        if (task.id === taskId) {
-          return {
-            ...task,
-            items: [
-              ...task.items,
-              { id: itemId, description: "<New responsibility>" },
-            ],
-          };
-        } else return { ...task };
-      })
-    );
-    itemId += 1;
+  function toggleEdit() {
+    setEditing(!editing);
+  }
+
+  function changeHandler(e, itemId) {
+    const nextItems = [{ id: itemId, description: e.target.value }];
+    const nextTasks = tasks.map((task) => {
+      if (task.id !== taskId) return task;
+      else return { ...task, items: nextItems };
+    });
+    setTasks(nextTasks);
+  }
+
+  function submitHandler(e) {
+    e.preventDefault();
+    setEditing(!editing);
   }
 
   return editing ? (
-    task.items.map((item) => (
-      <>
+    <form onSubmit={submitHandler}>
+      {task.items.map((item) => (
         <input
           key={item.id}
           value={item.description}
           onChange={(e) => changeHandler(e, item.id)}
         />
-        <button onClick={addItem}>Add task</button>
-      </>
-    ))
-  ) : (
-    <ul>
-      {task.items.map((item) => (
-        <li key={item.id}>{item.description}</li>
       ))}
-    </ul>
+      <button type="submit">Submit</button>
+    </form>
+  ) : (
+    <>
+      <button onClick={toggleEdit}>Edit Tasks</button>
+      <ul>
+        {task.items.map((item) => (
+          <li key={item.id}>{item.description}</li>
+        ))}
+      </ul>
+    </>
   );
 }

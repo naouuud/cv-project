@@ -12,9 +12,9 @@ export const initialJobs = [
     id: 0,
     title: "<Job title>",
     employer: "<Company>",
+    location: "<Location>",
     startDate: "<Start date>",
     endDate: "<End date>",
-    location: "<Location",
   },
 ];
 

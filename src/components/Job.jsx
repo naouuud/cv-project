@@ -1,26 +1,17 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import Tasks from "./Tasks";
 
-export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
+export default function Job({ jobId, jobs, setJobs }) {
   const [editing, setEditing] = useState(false);
   const job = jobs.find((job) => job.id === jobId);
 
   function changeHandler(e, key) {
-    const next = jobs.map((job) => {
+    const nextJobs = jobs.map((job) => {
       if (job.id !== jobId) return job;
       else return { ...job, [key]: e.target.value };
     });
-    setJobs(next);
+    setJobs(nextJobs);
   }
-
-  //   function taskHandler(e, index) {
-  //     const next = jobs.map((job) => {
-  //         if (job.id !== jobId) return job;
-  //         else return { ...job, [tasks][index][value]: e.target.value };
-  //       });
-  //       setJobs(next);
-  //   }
 
   function toggleEdit() {
     setEditing(!editing);
@@ -30,8 +21,6 @@ export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
     e.preventDefault();
     setEditing(!editing);
   }
-
-  // console.log(tasks);
 
   return editing ? (
     <form onSubmit={submitHandler}>
@@ -45,29 +34,17 @@ export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
           />
         );
       })}
-      <Tasks
-        taskId={jobId}
-        editing={editing}
-        tasks={tasks}
-        setTasks={setTasks}
-      />
       <button type="submit">Submit</button>
     </form>
   ) : (
     <>
-      <button onClick={toggleEdit}>Edit</button>
+      <button onClick={toggleEdit}>Edit Job</button>
       <div>
         <p>{job.title}</p>
         <p>{job.employer}</p>
         <p>{job.location}</p>
         <p>{job.startDate}</p>
         <p>{job.endDate}</p>
-        <Tasks
-          taskId={jobId}
-          editing={editing}
-          tasks={tasks}
-          setTasks={setTasks}
-        />
       </div>
     </>
   );

@@ -26,7 +26,7 @@ export default function PersonalBrand() {
   ) : (
     <div className="personal-brand display-mode">
       <p>{personalBrand}</p>
-      <button onClick={toggleEdit}>Edit</button>
+      <button onClick={toggleEdit}>Edit Personal Brand</button>
     </div>
   );
 }

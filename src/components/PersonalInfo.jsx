@@ -38,7 +38,7 @@ export default function PersonalInfo() {
       {Object.keys(personalInfo).map((key) => (
         <div key={key}>{personalInfo[key]}</div>
       ))}
-      <button onClick={toggleEdit}>Edit</button>
+      <button onClick={toggleEdit}>Edit Personal Info</button>
     </div>
   );
 }
