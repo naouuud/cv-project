@@ -5,34 +5,20 @@ export default function Tasks({ taskId, tasks, setTasks }) {
   const [editing, setEditing] = useState(false);
   const task = tasks.find((task) => task.id === taskId);
 
-  // let itemId = 1;
-
-  // // function addItem() {
-  // //   setTasks(
-  // //     tasks.filter((task) => {
-  // //       if (task.id === taskId) {
-  // //         return {
-  // //           ...task,
-  // //           items: [
-  // //             ...task.items,
-  // //             { id: itemId, description: "<New responsibility>" },
-  // //           ],
-  // //         };
-  // //       } else return { ...task };
-  // //     })
-  // //   );
-  // //   itemId += 1;
-  // // }
-
   function toggleEdit() {
     setEditing(!editing);
   }
 
   function changeHandler(e, itemId) {
-    const nextItems = [{ id: itemId, description: e.target.value }];
+    const nextItems = task.items.map((item) => {
+      if (item.id !== itemId) return item;
+      else return { ...item, description: e.target.value };
+    });
     const nextTasks = tasks.map((task) => {
       if (task.id !== taskId) return task;
-      else return { ...task, items: nextItems };
+      else {
+        return { ...task, items: nextItems };
+      }
     });
     setTasks(nextTasks);
   }

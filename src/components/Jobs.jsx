@@ -16,8 +16,15 @@ export default function Jobs() {
 
   function addPair() {
     setJobs([...jobs, { ...initialJobs[0], id: pairId }]);
-    setTasks([...tasks, { ...initialTasks[0], id: pairId }]);
+    setTasks([
+      ...tasks,
+      {
+        id: pairId,
+        items: [{ id: itemId, description: "<New responsibility>" }],
+      },
+    ]);
     pairId += 1;
+    itemId += 1;
   }
 
   function deletePair(id) {
