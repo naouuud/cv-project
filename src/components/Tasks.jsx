@@ -1,27 +1,28 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-// import { initialTasks } from "../assets/initial-data";
 
 export default function Tasks({ taskId, tasks, setTasks }) {
   const [editing, setEditing] = useState(false);
   const task = tasks.find((task) => task.id === taskId);
 
-  // function addItem() {
-  //   setTasks(
-  //     tasks.filter((task) => {
-  //       if (task.id === taskId) {
-  //         return {
-  //           ...task,
-  //           items: [
-  //             ...task.items,
-  //             { id: itemId, description: "<New responsibility>" },
-  //           ],
-  //         };
-  //       } else return { ...task };
-  //     })
-  //   );
-  //   itemId += 1;
-  // }
+  // let itemId = 1;
+
+  // // function addItem() {
+  // //   setTasks(
+  // //     tasks.filter((task) => {
+  // //       if (task.id === taskId) {
+  // //         return {
+  // //           ...task,
+  // //           items: [
+  // //             ...task.items,
+  // //             { id: itemId, description: "<New responsibility>" },
+  // //           ],
+  // //         };
+  // //       } else return { ...task };
+  // //     })
+  // //   );
+  // //   itemId += 1;
+  // // }
 
   function toggleEdit() {
     setEditing(!editing);
