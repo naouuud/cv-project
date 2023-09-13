@@ -1,22 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
-import { initialTasks } from "../assets/initial-data";
+// import { useState } from "react";
+// import { initialTasks } from "../assets/initial-data";
 
-export default function Tasks({ id, editing }) {
-  const [tasks, setTasks] = useState(initialTasks);
-
-  let task;
-  const exists = tasks.some((task) => task.id === id);
-  if (exists) {
-    [task] = tasks.filter((task) => task.id === id);
-  } else {
-    addTask(id);
-    [task] = tasks.filter((task) => task.id === id);
-  }
-
-  function addTask(id) {
-    setTasks([...tasks, { ...initialTasks, id: id }]);
-  }
+export default function Tasks({ taskId, editing, tasks, setTasks }) {
+  console.log(taskId);
+  const task = tasks.find((task) => task.id === taskId);
 
   function changeHandler(e, itemId) {
     const newText = e.target.value;
@@ -46,7 +34,7 @@ export default function Tasks({ id, editing }) {
   ) : (
     <ul>
       {task.items.map((item) => (
-        <li key={item.id}>{item.text}</li>
+        <li key={item.id}>{item.description}</li>
       ))}
     </ul>
   );

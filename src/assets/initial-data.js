@@ -15,12 +15,6 @@ export const initialJobs = [
     startDate: "<Start date>",
     endDate: "<End date>",
     location: "<Location",
-    // tasks: [
-    //   {
-    //     id: 0,
-    //     text: "<Responsibilities>",
-    //   },
-    // ],
   },
 ];
 
@@ -30,7 +24,7 @@ export const initialTasks = [
     items: [
       {
         id: 0,
-        text: "<Responsibilities>",
+        description: "<List job responsibilities>",
       },
     ],
   },

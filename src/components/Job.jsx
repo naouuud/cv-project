@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Tasks from "./Tasks";
 
-export default function Job({ jobId, jobs, setJobs }) {
+export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
   const [editing, setEditing] = useState(false);
   const job = jobs.find((job) => job.id === jobId);
 
@@ -31,6 +31,8 @@ export default function Job({ jobId, jobs, setJobs }) {
     setEditing(!editing);
   }
 
+  // console.log(tasks);
+
   return editing ? (
     <form onSubmit={submitHandler}>
       {Object.keys(job).map((key, index) => {
@@ -43,7 +45,12 @@ export default function Job({ jobId, jobs, setJobs }) {
           />
         );
       })}
-      <Tasks id={jobId} editing={editing} />
+      <Tasks
+        taskId={jobId}
+        editing={editing}
+        tasks={tasks}
+        setTasks={setTasks}
+      />
       <button type="submit">Submit</button>
     </form>
   ) : (
