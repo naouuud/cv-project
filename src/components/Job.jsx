@@ -5,16 +5,16 @@ export default function Job({ jobId, jobs, setJobs }) {
   const [editing, setEditing] = useState(false);
   const job = jobs.find((job) => job.id === jobId);
 
+  function toggleEdit() {
+    setEditing(!editing);
+  }
+
   function changeHandler(e, key) {
     const nextJobs = jobs.map((job) => {
       if (job.id !== jobId) return job;
       else return { ...job, [key]: e.target.value };
     });
     setJobs(nextJobs);
-  }
-
-  function toggleEdit() {
-    setEditing(!editing);
   }
 
   function submitHandler(e) {

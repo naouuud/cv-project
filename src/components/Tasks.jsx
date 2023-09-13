@@ -28,14 +28,27 @@ export default function Tasks({ taskId, tasks, setTasks }) {
     setEditing(!editing);
   }
 
+  function deleteItem(itemId) {
+    const nextItems = task.items.filter((item) => item.id !== itemId);
+    const nextTasks = tasks.map((task) => {
+      if (task.id !== taskId) return task;
+      else {
+        return { ...task, items: nextItems };
+      }
+    });
+    setTasks(nextTasks);
+  }
+
   return editing ? (
     <form onSubmit={submitHandler}>
       {task.items.map((item) => (
-        <input
-          key={item.id}
-          value={item.description}
-          onChange={(e) => changeHandler(e, item.id)}
-        />
+        <div key={item.id}>
+          <input
+            value={item.description}
+            onChange={(e) => changeHandler(e, item.id)}
+          />
+          <button onClick={() => deleteItem(item.id)}>&times;</button>
+        </div>
       ))}
       <button type="submit">Submit</button>
     </form>
@@ -44,7 +57,10 @@ export default function Tasks({ taskId, tasks, setTasks }) {
       <button onClick={toggleEdit}>Edit Tasks</button>
       <ul>
         {task.items.map((item) => (
-          <li key={item.id}>{item.description}</li>
+          <div key={item.id}>
+            <li>{item.description}</li>
+            <button onClick={() => deleteItem(item.id)}>&times;</button>
+          </div>
         ))}
       </ul>
     </>

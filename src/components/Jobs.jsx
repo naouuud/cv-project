@@ -55,7 +55,7 @@ export default function Jobs() {
           <button onClick={() => deletePair(job.id)}>Delete Job</button>
           <Job jobId={job.id} jobs={jobs} setJobs={setJobs} />
           <Tasks taskId={job.id} tasks={tasks} setTasks={setTasks} />
-          <button onClick={() => addItem(job.id)}>Add Item</button>
+          <button onClick={() => addItem(job.id)}>Add Task</button>
         </div>
       ))}
       <button onClick={addPair}>Add Job</button>
