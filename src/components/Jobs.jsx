@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import Job from "./Job";
-import Tasks from "./Tasks";
 import { initialJobs } from "../assets/initial-data";
 import { initialTasks } from "../assets/initial-data";
 
@@ -26,8 +25,13 @@ export default function Jobs() {
       {jobs.map((job) => (
         <div key={job.id}>
           <button onClick={() => deleteJob(job.id)}>Delete job</button>
-          <Job jobId={job.id} jobs={jobs} setJobs={setJobs} />
-          <Tasks taskId={job.id} tasks={tasks} setTasks={setTasks} />
+          <Job
+            jobId={job.id}
+            jobs={jobs}
+            setJobs={setJobs}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
         </div>
       ))}
       <button onClick={addJob}>Add job</button>

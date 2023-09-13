@@ -62,7 +62,12 @@ export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
         <p>{job.location}</p>
         <p>{job.startDate}</p>
         <p>{job.endDate}</p>
-        <Tasks id={jobId} editing={editing} />
+        <Tasks
+          taskId={jobId}
+          editing={editing}
+          tasks={tasks}
+          setTasks={setTasks}
+        />
       </div>
     </>
   );

@@ -3,34 +3,53 @@
 // import { initialTasks } from "../assets/initial-data";
 
 export default function Tasks({ taskId, editing, tasks, setTasks }) {
-  console.log(taskId);
   const task = tasks.find((task) => task.id === taskId);
 
-  function changeHandler(e, itemId) {
-    const newText = e.target.value;
-    const newItems = task.items.map((item) => {
-      if (item.id === itemId) {
-        return { ...item, text: newText };
-      } else return { ...item };
-    });
-    const newTasks = tasks.map((aTask) => {
-      if (aTask.id === task.id) {
-        return { ...aTask, items: newItems };
-      } else return { ...aTask };
-    });
-    setTasks(newTasks);
+  let itemId = 1;
+
+  // function changeHandler(e, itemId) {
+  //   const newText = e.target.value;
+  //   const newItems = task.items.map((item) => {
+  //     if (item.id === itemId) {
+  //       return { ...item, text: newText };
+  //     } else return { ...item };
+  //   });
+  //   const newTasks = tasks.map((aTask) => {
+  //     if (aTask.id === task.id) {
+  //       return { ...aTask, items: newItems };
+  //     } else return { ...aTask };
+  //   });
+  //   setTasks(newTasks);
+  // }
+
+  function addItem() {
+    setTasks(
+      tasks.filter((task) => {
+        if (task.id === taskId) {
+          return {
+            ...task,
+            items: [
+              ...task.items,
+              { id: itemId, description: "<New responsibility>" },
+            ],
+          };
+        } else return { ...task };
+      })
+    );
+    itemId += 1;
   }
 
   return editing ? (
-    <form>
-      {task.items.map((item) => (
+    task.items.map((item) => (
+      <>
         <input
           key={item.id}
-          value={item.text}
+          value={item.description}
           onChange={(e) => changeHandler(e, item.id)}
         />
-      ))}
-    </form>
+        <button onClick={addItem}>Add task</button>
+      </>
+    ))
   ) : (
     <ul>
       {task.items.map((item) => (
