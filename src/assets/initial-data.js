@@ -29,3 +29,17 @@ export const initialTasks = [
     ],
   },
 ];
+
+export const initialEducation = [
+  {
+    id: 0,
+    degree: "<Degree>",
+    institution: "<Institution>",
+    location: "<Location>",
+    startDate: "<Start date>",
+    endDate: "<End date>",
+    otherInfo: "<Other info (optional)>",
+  },
+];
+
+export const initialSkills = [];

@@ -12,8 +12,6 @@ export default function Jobs() {
   const [jobs, setJobs] = useState(initialJobs);
   const [tasks, setTasks] = useState(initialTasks);
 
-  console.log(tasks);
-
   function addPair() {
     setJobs([...jobs, { ...initialJobs[0], id: pairId }]);
     setTasks([
