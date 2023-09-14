@@ -1,8 +1,15 @@
-# React + Vite
+# CV Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## React exercise from The Odin Project
 
-Currently, two official plugins are available:
+**Goal**: In this assignment, I learn how to structure a simple React webpage using states and props.
+The end goal is to have an online CV with editable fields.
+Each component should function independently with persistent state.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Challenges**: Structuring state (trade off between modularity of individual components and overall complexity); accessing parent state through props; editing states that involve nested objects. This project was also a good opportunity to practice Array methods in Javascript (map, filter), object/array destructuring, and spread syntax.
+
+Optionally, I will try to add Local Storage and explore how the finished CV can be exported to pdf.
+
+Project set-up: _Vite_
+Linting: _ESLint_
+Formatting: _Prettier_

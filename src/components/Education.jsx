@@ -1,15 +1,24 @@
-import { initialEducation } from "../assets/initial-data";
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-export default function Education() {
+export default function Education({ educationId, educations, setEducations }) {
   const [editing, setEditing] = useState(false);
-  const [education, setEducation] = useState(initialEducation);
+  const education = educations.find(
+    (education) => education.id === educationId
+  );
 
   function toggleEdit() {
     setEditing(!editing);
   }
 
-  function changeHandler() {}
+  function changeHandler(e, key) {
+    setEducations(
+      educations.map((education) => {
+        if (education.id !== educationId) return education;
+        else return { ...education, [key]: e.target.value };
+      })
+    );
+  }
 
   function submitHandler(e) {
     e.preventDefault();
@@ -18,24 +27,24 @@ export default function Education() {
 
   return !editing ? (
     <>
-      {education.map((item) =>
-        Object.keys(item).map((key, index) => {
-          if (key === "id") return;
-          return <p key={index}>{item[key]}</p>;
-        })
-      )}
+      {Object.keys(education).map((key) => {
+        if (key === "id") return;
+        return <p key={key}>{education[key]}</p>;
+      })}
       <button onClick={toggleEdit}>Edit Education</button>
     </>
   ) : (
     <form onSubmit={submitHandler}>
-      {education.map((item) =>
-        Object.keys(item).map((key, index) => {
-          if (key === "id") return;
-          return (
-            <input key={index} value={item[key]} onChange={changeHandler} />
-          );
-        })
-      )}
+      {Object.keys(education).map((key) => {
+        if (key === "id") return;
+        return (
+          <input
+            key={key}
+            value={education[key]}
+            onChange={(e) => changeHandler(e, key)}
+          />
+        );
+      })}
       <button type="submit">Submit</button>
     </form>
   );

@@ -30,7 +30,7 @@ export const initialTasks = [
   },
 ];
 
-export const initialEducation = [
+export const initialEducations = [
   {
     id: 0,
     degree: "<Degree>",

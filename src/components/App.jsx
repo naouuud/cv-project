@@ -2,7 +2,7 @@
 import PersonalInfo from "./PersonalInfo";
 import PersonalBrand from "./PersonalBrand";
 import Jobs from "./Jobs";
-import Education from "./Education";
+import Educations from "./Educations";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <PersonalInfo />
       <PersonalBrand />
       <Jobs />
-      <Education />
+      <Educations />
     </>
   );
 }
