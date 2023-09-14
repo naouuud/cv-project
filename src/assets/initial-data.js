@@ -5,7 +5,7 @@ export const initialPersonalInfo = {
   address: "<Street address>",
 };
 
-export const initialPersonalBrand = "<Personal brand statement (1-2 lines)>";
+export const initialBrandStatement = "<Brand statement (1-2 lines)>";
 
 export const initialJobs = [
   {
@@ -42,4 +42,9 @@ export const initialEducations = [
   },
 ];
 
-export const initialSkills = [];
+export const initialSkills = [
+  {
+    id: 0,
+    description: "<List your skills>",
+  },
+];

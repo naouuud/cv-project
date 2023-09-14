@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { initialPersonalBrand } from "../assets/initial-data";
+import { initialBrandStatement } from "../assets/initial-data";
 
-export default function PersonalBrand() {
+export default function BrandStatement() {
   const [editing, setEditing] = useState(false);
-  const [personalBrand, setPersonalBrand] = useState(initialPersonalBrand);
+  const [brandStatement, setBrandStatement] = useState(initialBrandStatement);
 
   function changeHandler(e) {
-    setPersonalBrand(e.target.value);
+    setBrandStatement(e.target.value);
   }
 
   function toggleEdit() {
@@ -20,13 +20,13 @@ export default function PersonalBrand() {
 
   return editing ? (
     <form onSubmit={submitHandler} className="personal-brand editing-mode">
-      <textarea value={personalBrand} onChange={changeHandler} />
+      <textarea value={brandStatement} onChange={changeHandler} />
       <button type="submit">Submit</button>
     </form>
   ) : (
     <div className="personal-brand display-mode">
-      <p>{personalBrand}</p>
-      <button onClick={toggleEdit}>Edit Personal Brand</button>
+      <p>{brandStatement}</p>
+      <button onClick={toggleEdit}>Edit Brand Statement</button>
     </div>
   );
 }
