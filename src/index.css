@@ -81,6 +81,16 @@ hr {
   cursor: pointer;
 }
 
+.job,
+.display-mode {
+  display: flex;
+  justify-content: space-between;
+}
+
+.job:hover {
+  cursor: pointer;
+}
+
 /* a {
   font-weight: 500;
   color: #646cff;

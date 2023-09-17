@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-export default function Tasks({ taskId, tasks, setTasks }) {
-  const [editing, setEditing] = useState(false);
+export default function Tasks({ taskId, tasks, setTasks, editing }) {
+  // const [editing, setEditing] = useState(false);
   const task = tasks.find((task) => task.id === taskId);
 
-  function toggleEdit() {
-    setEditing(!editing);
-  }
+  // function toggleEdit() {
+  //   setEditing(!editing);
+  // }
 
   function changeHandler(e, itemId) {
     const nextItems = task.items.map((item) => {
@@ -25,7 +25,7 @@ export default function Tasks({ taskId, tasks, setTasks }) {
 
   function submitHandler(e) {
     e.preventDefault();
-    setEditing(!editing);
+    // setEditing(!editing);
   }
 
   function deleteItem(itemId) {
@@ -54,7 +54,7 @@ export default function Tasks({ taskId, tasks, setTasks }) {
     </form>
   ) : (
     <>
-      <button onClick={toggleEdit}>Edit Tasks</button>
+      {/* <button onClick={toggleEdit}>Edit Tasks</button> */}
       <ul>
         {task.items.map((item) => (
           <div key={item.id}>

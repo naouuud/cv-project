@@ -25,10 +25,10 @@ export default function Jobs() {
     itemId += 1;
   }
 
-  function deletePair(id) {
-    setJobs(jobs.filter((job) => job.id !== id));
-    setTasks(tasks.filter((task) => task.id !== id));
-  }
+  // function deletePair(id) {
+  //   setJobs(jobs.filter((job) => job.id !== id));
+  //   setTasks(tasks.filter((task) => task.id !== id));
+  // }
 
   function addItem(taskId) {
     const nextTasks = tasks.filter((task) => {
@@ -51,13 +51,20 @@ export default function Jobs() {
       <h2>Professional Experience</h2>
       {jobs.map((job) => (
         <div key={job.id}>
-          <button onClick={() => deletePair(job.id)}>Delete Job</button>
-          <Job jobId={job.id} jobs={jobs} setJobs={setJobs} />
+          {/* <button onClick={() => deletePair(job.id)}>Delete Job</button> */}
+          <Job
+            jobId={job.id}
+            jobs={jobs}
+            setJobs={setJobs}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
           <Tasks taskId={job.id} tasks={tasks} setTasks={setTasks} />
           <button onClick={() => addItem(job.id)}>Add Task</button>
         </div>
       ))}
       <button onClick={addPair}>Add Job</button>
+      <hr />
     </>
   );
 }
