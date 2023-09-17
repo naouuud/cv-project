@@ -7,13 +7,13 @@ import Skills from "./Skills";
 
 function App() {
   return (
-    <>
+    <div className="form">
       <PersonalInfo />
       <BrandStatement />
       <Jobs />
       <Educations />
       <Skills />
-    </>
+    </div>
   );
 }
 

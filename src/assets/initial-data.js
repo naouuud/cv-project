@@ -1,11 +1,11 @@
 export const initialPersonalInfo = {
   name: "<Full name>",
-  email: "<Email>",
-  phone: "<Phone number>",
-  address: "<Street address>",
+  address: "<city and country>",
+  email: "<email>",
+  phone: "<phone number>",
 };
 
-export const initialBrandStatement = "<Brand statement (1-2 lines)>";
+export const initialBrandStatement = "<Brand statement>";
 
 export const initialJobs = [
   {

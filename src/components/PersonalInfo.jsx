@@ -20,25 +20,49 @@ export default function PersonalInfo() {
   }
 
   return editing ? (
-    <form onSubmit={submitHandler} className="personal-info editing-mode">
-      {Object.keys(personalInfo).map((key) => {
-        return (
+    <>
+      <form onSubmit={submitHandler} className="personal-info edit-mode">
+        <input
+          className="name"
+          type="text"
+          value={personalInfo.name}
+          onChange={(e) => changeHandler(e, "name")}
+        />
+        <div>
+          Located in{" "}
           <input
-            key={key}
             type="text"
-            value={personalInfo[key]}
-            onChange={(e) => changeHandler(e, key)}
-          />
-        );
-      })}
-      <button type="submit">Submit</button>
-    </form>
+            value={personalInfo.address}
+            onChange={(e) => changeHandler(e, "address")}
+          />{" "}
+          Reach me at{" "}
+          <input
+            type="text"
+            value={personalInfo.email}
+            onChange={(e) => changeHandler(e, "email")}
+          />{" "}
+          or{" "}
+          <input
+            type="text"
+            value={personalInfo.phone}
+            onChange={(e) => changeHandler(e, "phone")}
+          />{" "}
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <hr />
+    </>
   ) : (
-    <div className="personal-info display-mode">
-      {Object.keys(personalInfo).map((key) => (
-        <div key={key}>{personalInfo[key]}</div>
-      ))}
-      <button onClick={toggleEdit}>Edit Personal Info</button>
-    </div>
+    <>
+      <div onClick={toggleEdit} className="personal-info display-mode">
+        <div className="name">{personalInfo.name}</div>
+        <div>
+          Located in <span className="bold">{personalInfo.address}</span>. Reach
+          me at <span className="bold">{personalInfo.email}</span> or{" "}
+          <span className="bold">{personalInfo.phone}</span>.
+        </div>
+      </div>
+      <hr />
+    </>
   );
 }

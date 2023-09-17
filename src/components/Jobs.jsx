@@ -48,6 +48,7 @@ export default function Jobs() {
 
   return (
     <>
+      <h2>Professional Experience</h2>
       {jobs.map((job) => (
         <div key={job.id}>
           <button onClick={() => deletePair(job.id)}>Delete Job</button>
