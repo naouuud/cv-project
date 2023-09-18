@@ -24,7 +24,7 @@ export const initialTasks = [
     items: [
       {
         id: 0,
-        description: "<List job responsibilities>",
+        description: "<Job responsibilities>",
       },
     ],
   },

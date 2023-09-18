@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import Tasks from "./Tasks";
+
+// let itemId = 1;
 
 export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
   const [editing, setEditing] = useState(false);
@@ -31,18 +34,32 @@ export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
     setJobs(nextJobs);
   }
 
-  function dateHandler(e, key) {
+  function setDate(e, key) {
     const date = new Date(e.target.value);
-    const month = date.getMonth();
-    const monthName = months[month];
-    const year = date.getFullYear();
-    const dateString = `${monthName} ${year}`;
     setJobs(
       jobs.map((job) => {
         if (job.id !== jobId) return job;
-        else return { ...job, [key]: dateString };
+        else return { ...job, [key]: date };
       })
     );
+  }
+
+  function dateToString(date) {
+    const month = date.getMonth();
+    if (!month) return "Present";
+    const monthName = months[month];
+    const year = date.getFullYear();
+    return `${monthName} ${year}`;
+  }
+
+  function dateToInput(date) {
+    let day = date.getDate();
+    if (!day) return "";
+    if (day < 10) day = `0${day}`;
+    let month = date.getMonth() + 1;
+    if (month < 10) month = `0${month}`;
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}`;
   }
 
   function submitHandler(e) {
@@ -50,47 +67,90 @@ export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
     setEditing(!editing);
   }
 
-  function deletePair(id) {
+  function deletePair(e, id) {
+    e.preventDefault();
     setJobs(jobs.filter((job) => job.id !== id));
     setTasks(tasks.filter((task) => task.id !== id));
   }
 
+  // function addItem(taskId) {
+  //   const nextTasks = tasks.filter((task) => {
+  //     if (task.id !== taskId) return task;
+  //     else
+  //       return {
+  //         ...task,
+  //         items: task.items.push({
+  //           id: itemId,
+  //           description: "<New responsibility>",
+  //         }),
+  //       };
+  //   });
+  //   itemId += 1;
+  //   setTasks(nextTasks);
+  // }
+
   return editing ? (
     <form onSubmit={submitHandler}>
-      {Object.keys(job).map((key) => {
-        if (key === "id" || key === "tasks") return;
-        else if (key !== "startDate" && key !== "endDate")
-          return (
-            <input
-              key={key}
-              value={job[key]}
-              onChange={(e) => changeHandler(e, key)}
-            />
-          );
-        else
-          return (
-            <input
-              key={key}
-              type="date"
-              onChange={(e) => dateHandler(e, key)}
-            />
-          );
-      })}
-      <button onClick={() => deletePair(job.id)}>Delete Job</button>
-      <button type="submit">Submit</button>
+      <div className="job-task-pair">
+        <div className="job edit-mode">
+          {Object.keys(job).map((key) => {
+            if (key === "id" || key === "tasks") return;
+            else if (key !== "startDate" && key !== "endDate")
+              return (
+                <input
+                  key={key}
+                  value={job[key]}
+                  onChange={(e) => changeHandler(e, key)}
+                />
+              );
+            else
+              return (
+                <input
+                  key={key}
+                  type="date"
+                  value={
+                    typeof job[key] === "string" ? "" : dateToInput(job[key])
+                  }
+                  onChange={(e) => setDate(e, key)}
+                />
+              );
+          })}
+          <button onClick={(e) => deletePair(e, job.id)}>&times;</button>
+        </div>
+        <Tasks
+          taskId={job.id}
+          tasks={tasks}
+          setTasks={setTasks}
+          editing={editing}
+        />
+        <button type="submit">Confirm Changes</button>
+        {/* <button onClick={() => addItem(job.id)}>+ Add Task</button> */}
+      </div>
     </form>
   ) : (
-    <>
+    <div className="job-task-pair" onClick={toggleEdit}>
       {/* <button onClick={toggleEdit}>Edit Job</button> */}
-      <div className="job display-mode" onClick={toggleEdit}>
+      <div className="job display-mode">
         <p>
           <span className="bold">{job.title}</span>, {job.employer},{" "}
           {job.location}
         </p>
         <p>
-          {job.startDate} to {job.endDate}
+          {typeof job.startDate === "string"
+            ? job.startDate
+            : dateToString(job.startDate)}{" "}
+          to{" "}
+          {typeof job.endDate === "string"
+            ? job.endDate
+            : dateToString(job.endDate)}
         </p>
       </div>
-    </>
+      <Tasks
+        taskId={job.id}
+        tasks={tasks}
+        setTasks={setTasks}
+        editing={editing}
+      />
+    </div>
   );
 }

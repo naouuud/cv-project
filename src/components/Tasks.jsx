@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+// import { useState } from "react";
+
+let itemId = 1;
 
 export default function Tasks({ taskId, tasks, setTasks, editing }) {
   // const [editing, setEditing] = useState(false);
@@ -23,10 +25,10 @@ export default function Tasks({ taskId, tasks, setTasks, editing }) {
     setTasks(nextTasks);
   }
 
-  function submitHandler(e) {
-    e.preventDefault();
-    // setEditing(!editing);
-  }
+  // function submitHandler(e) {
+  //   e.preventDefault();
+  //   // setEditing(!editing);
+  // }
 
   function deleteItem(itemId) {
     const nextItems = task.items.filter((item) => item.id !== itemId);
@@ -39,28 +41,49 @@ export default function Tasks({ taskId, tasks, setTasks, editing }) {
     setTasks(nextTasks);
   }
 
+  function addItem(e) {
+    e.preventDefault();
+    const nextTasks = tasks.map((task) => {
+      if (task.id !== taskId) return task;
+      else
+        return {
+          ...task,
+          items: [
+            ...task.items,
+            {
+              id: itemId,
+              description: "<New responsibility>",
+            },
+          ],
+        };
+    });
+    itemId += 1;
+    setTasks(nextTasks);
+  }
+
   return editing ? (
-    <form onSubmit={submitHandler}>
-      {task.items.map((item) => (
-        <div key={item.id}>
-          <input
-            value={item.description}
-            onChange={(e) => changeHandler(e, item.id)}
-          />
-          <button onClick={() => deleteItem(item.id)}>&times;</button>
-        </div>
-      ))}
-      <button type="submit">Submit</button>
-    </form>
+    // <form onSubmit={submitHandler}>
+    <>
+      <ul className="item-list">
+        {task.items.map((item) => (
+          <li key={item.id}>
+            <input
+              value={item.description}
+              onChange={(e) => changeHandler(e, item.id)}
+            />
+            <button onClick={() => deleteItem(item.id)}>&times;</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={addItem}>+ Add Task</button>
+    </>
   ) : (
+    // </form>
     <>
       {/* <button onClick={toggleEdit}>Edit Tasks</button> */}
-      <ul>
+      <ul className="item-list">
         {task.items.map((item) => (
-          <div key={item.id}>
-            <li>{item.description}</li>
-            <button onClick={() => deleteItem(item.id)}>&times;</button>
-          </div>
+          <li key={item.id}>{item.description}</li>
         ))}
       </ul>
     </>

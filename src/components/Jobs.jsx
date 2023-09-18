@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import Job from "./Job";
-import Tasks from "./Tasks";
+// import Tasks from "./Tasks";
 import { initialJobs } from "../assets/initial-data";
 import { initialTasks } from "../assets/initial-data";
 
 let pairId = 1;
-let itemId = 1;
 
 export default function Jobs() {
   const [jobs, setJobs] = useState(initialJobs);
@@ -18,11 +17,10 @@ export default function Jobs() {
       ...tasks,
       {
         id: pairId,
-        items: [{ id: itemId, description: "<New responsibility>" }],
+        items: [{ id: 0, description: "<Job responsibilities>" }],
       },
     ]);
     pairId += 1;
-    itemId += 1;
   }
 
   // function deletePair(id) {
@@ -30,21 +28,21 @@ export default function Jobs() {
   //   setTasks(tasks.filter((task) => task.id !== id));
   // }
 
-  function addItem(taskId) {
-    const nextTasks = tasks.filter((task) => {
-      if (task.id !== taskId) return task;
-      else
-        return {
-          ...task,
-          items: task.items.push({
-            id: itemId,
-            description: "<New responsibility>",
-          }),
-        };
-    });
-    itemId += 1;
-    setTasks(nextTasks);
-  }
+  // function addItem(taskId) {
+  //   const nextTasks = tasks.filter((task) => {
+  //     if (task.id !== taskId) return task;
+  //     else
+  //       return {
+  //         ...task,
+  //         items: task.items.push({
+  //           id: itemId,
+  //           description: "<New responsibility>",
+  //         }),
+  //       };
+  //   });
+  //   itemId += 1;
+  //   setTasks(nextTasks);
+  // }
 
   return (
     <>
@@ -59,11 +57,13 @@ export default function Jobs() {
             tasks={tasks}
             setTasks={setTasks}
           />
-          <Tasks taskId={job.id} tasks={tasks} setTasks={setTasks} />
-          <button onClick={() => addItem(job.id)}>Add Task</button>
+          {/* <Tasks taskId={job.id} tasks={tasks} setTasks={setTasks} /> */}
+          {/* <button onClick={() => addItem(job.id)}>Add Task</button> */}
         </div>
       ))}
-      <button onClick={addPair}>Add Job</button>
+      <button className="add-job" onClick={addPair}>
+        + Add Job
+      </button>
       <hr />
     </>
   );

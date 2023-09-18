@@ -48,6 +48,10 @@ hr {
   margin-bottom: 10px;
 }
 
+p {
+  margin: 0;
+}
+
 .bold {
   font-weight: 600;
 }
@@ -82,13 +86,26 @@ hr {
 }
 
 .job,
-.display-mode {
+.display-mode,
+.task-item {
   display: flex;
   justify-content: space-between;
 }
 
-.job:hover {
+.job-task-pair {
+  padding: 10px;
+}
+
+.job-task-pair:hover {
   cursor: pointer;
+}
+
+.add-job {
+  margin-top: 20px;
+}
+
+.item-list li {
+  margin-bottom: 4px;
 }
 
 /* a {
