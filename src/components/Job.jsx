@@ -2,8 +2,6 @@
 import { useState } from "react";
 import Tasks from "./Tasks";
 
-// let itemId = 1;
-
 export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
   const [editing, setEditing] = useState(false);
   const job = jobs.find((job) => job.id === jobId);
@@ -72,22 +70,6 @@ export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
     setJobs(jobs.filter((job) => job.id !== id));
     setTasks(tasks.filter((task) => task.id !== id));
   }
-
-  // function addItem(taskId) {
-  //   const nextTasks = tasks.filter((task) => {
-  //     if (task.id !== taskId) return task;
-  //     else
-  //       return {
-  //         ...task,
-  //         items: task.items.push({
-  //           id: itemId,
-  //           description: "<New responsibility>",
-  //         }),
-  //       };
-  //   });
-  //   itemId += 1;
-  //   setTasks(nextTasks);
-  // }
 
   return editing ? (
     <form onSubmit={submitHandler}>

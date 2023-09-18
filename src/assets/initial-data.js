@@ -11,10 +11,10 @@ export const initialJobs = [
   {
     id: 0,
     title: "<Job title>",
-    employer: "<Company>",
+    employer: "<Employer>",
     location: "<Location>",
     startDate: "<Start date>",
-    endDate: "<End date>",
+    endDate: "Present",
   },
 ];
 
@@ -37,7 +37,7 @@ export const initialEducations = [
     institution: "<Institution>",
     location: "<Location>",
     startDate: "<Start date>",
-    endDate: "<End date>",
+    endDate: "Present",
     otherInfo: "<Other info (optional)>",
   },
 ];

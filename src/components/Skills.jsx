@@ -8,23 +8,14 @@ export default function Skills() {
   const [skills, setSkills] = useState(initialSkills);
   const [editingList, setEditingList] = useState([]);
 
-  function toggleEdit(id) {
-    editingList.includes(id)
-      ? setEditingList(editingList.filter((item) => item !== id))
-      : setEditingList([...editingList, id]);
-  }
-
   function addSkill() {
     setSkills([...skills, { id: skillId, description: "<New Skill>" }]);
     skillId += 1;
   }
 
-  function deleteSkill(id) {
-    setSkills(skills.filter((skill) => skill.id !== id));
-  }
-
   return (
     <>
+      <h2>Skills</h2>
       <ul>
         {skills.map((skill) => (
           <div key={skill.id}>
@@ -36,12 +27,11 @@ export default function Skills() {
               editingList={editingList}
               setEditingList={setEditingList}
             />
-            <button onClick={() => toggleEdit(skill.id)}>Edit skill</button>
-            <button onClick={() => deleteSkill(skill.id)}>&times;</button>
+            {/* <button onClick={() => toggleEdit(skill.id)}>Edit skill</button> */}
           </div>
         ))}
       </ul>
-      <button onClick={addSkill}>Add Skill</button>
+      <button onClick={addSkill}>+ Add Skill</button>
     </>
   );
 }

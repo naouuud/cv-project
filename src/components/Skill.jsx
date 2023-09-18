@@ -26,18 +26,32 @@ export default function Skill({
       : setEditingList([...editingList, skillId]);
   }
 
+  function deleteSkill(e) {
+    e.preventDefault();
+    setSkills(skills.filter((skill) => skill.id !== skillId));
+  }
+
+  function toggleEdit() {
+    editingList.includes(skillId)
+      ? setEditingList(editingList.filter((item) => item !== skillId))
+      : setEditingList([...editingList, skillId]);
+  }
+
   return !editing ? (
     <>
-      <li>{skill.description}</li>
+      <li onClick={toggleEdit}>{skill.description}</li>
     </>
   ) : (
     <form onSubmit={submitHandler}>
-      <input
-        key={skill.id}
-        value={skill.description}
-        onChange={changeHandler}
-      />
-      <button type="submit">Submit</button>
+      <li>
+        <input
+          key={skill.id}
+          value={skill.description}
+          onChange={changeHandler}
+        />
+        <button onClick={deleteSkill}>&times;</button>
+        <button type="submit">Confirm Changes</button>
+      </li>
     </form>
   );
 }

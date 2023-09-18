@@ -13,17 +13,18 @@ export default function Educations() {
     educationId += 1;
   }
 
-  function deleteEducation(id) {
-    setEducations(educations.filter((education) => education.id !== id));
-  }
+  // function deleteEducation(id) {
+  //   setEducations(educations.filter((education) => education.id !== id));
+  // }
 
   return (
     <>
+      <h2>Education</h2>
       {educations.map((education) => (
         <div key={education.id}>
-          <button onClick={() => deleteEducation(education.id)}>
+          {/* <button onClick={() => deleteEducation(education.id)}>
             Delete Education
-          </button>
+          </button> */}
           <Education
             educationId={education.id}
             educations={educations}
@@ -31,7 +32,10 @@ export default function Educations() {
           />
         </div>
       ))}
-      <button onClick={addEducation}>Add Education</button>
+      <button className="add-education" onClick={addEducation}>
+        + Add Education
+      </button>
+      <hr />
     </>
   );
 }
