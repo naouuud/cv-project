@@ -39,19 +39,26 @@ export default function Skill({
 
   return !editing ? (
     <>
-      <li onClick={toggleEdit}>{skill.description}</li>
+      <li className="skill non-input" onClick={toggleEdit}>
+        {skill.description}
+      </li>
     </>
   ) : (
     <form onSubmit={submitHandler}>
-      <li>
-        <input
-          key={skill.id}
-          value={skill.description}
-          onChange={changeHandler}
-        />
-        <button onClick={deleteSkill}>&times;</button>
+      <div className="skill-submit-pair">
+        <li>
+          <input
+            key={skill.id}
+            className="skill"
+            value={skill.description}
+            onChange={changeHandler}
+          />
+          <button className="x-button" onClick={deleteSkill}>
+            &times;
+          </button>
+        </li>
         <button type="submit">Confirm Changes</button>
-      </li>
+      </div>
     </form>
   );
 }

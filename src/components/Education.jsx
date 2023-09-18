@@ -126,7 +126,9 @@ export default function Education({ educationId, educations, setEducations }) {
           value={education.otherInfo}
           onChange={(e) => changeHandler(e, "otherInfo")}
         />
-        <button type="submit">Confirm Changes</button>
+        <div className="flex-end">
+          <button type="submit">Confirm Changes</button>
+        </div>
       </form>
     </div>
   );

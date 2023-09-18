@@ -27,7 +27,6 @@ export default function Skills() {
               editingList={editingList}
               setEditingList={setEditingList}
             />
-            {/* <button onClick={() => toggleEdit(skill.id)}>Edit skill</button> */}
           </div>
         ))}
       </ul>

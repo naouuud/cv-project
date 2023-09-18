@@ -1,15 +1,9 @@
 /* eslint-disable react/prop-types */
-// import { useState } from "react";
 
 let itemId = 1;
 
 export default function Tasks({ taskId, tasks, setTasks, editing }) {
-  // const [editing, setEditing] = useState(false);
   const task = tasks.find((task) => task.id === taskId);
-
-  // function toggleEdit() {
-  //   setEditing(!editing);
-  // }
 
   function changeHandler(e, itemId) {
     const nextItems = task.items.map((item) => {
@@ -24,11 +18,6 @@ export default function Tasks({ taskId, tasks, setTasks, editing }) {
     });
     setTasks(nextTasks);
   }
-
-  // function submitHandler(e) {
-  //   e.preventDefault();
-  //   // setEditing(!editing);
-  // }
 
   function deleteItem(itemId) {
     const nextItems = task.items.filter((item) => item.id !== itemId);
@@ -62,7 +51,6 @@ export default function Tasks({ taskId, tasks, setTasks, editing }) {
   }
 
   return editing ? (
-    // <form onSubmit={submitHandler}>
     <>
       <ul className="item-list">
         {task.items.map((item) => (
@@ -71,16 +59,18 @@ export default function Tasks({ taskId, tasks, setTasks, editing }) {
               value={item.description}
               onChange={(e) => changeHandler(e, item.id)}
             />
-            <button onClick={() => deleteItem(item.id)}>&times;</button>
+            <button className="x-button" onClick={() => deleteItem(item.id)}>
+              &times;
+            </button>
           </li>
         ))}
       </ul>
-      <button onClick={addItem}>+ Add Task</button>
+      <button className="add-item" onClick={addItem}>
+        + Add Task
+      </button>
     </>
   ) : (
-    // </form>
     <>
-      {/* <button onClick={toggleEdit}>Edit Tasks</button> */}
       <ul className="item-list">
         {task.items.map((item) => (
           <li key={item.id}>{item.description}</li>

@@ -105,13 +105,13 @@ export default function Job({ jobId, jobs, setJobs, tasks, setTasks }) {
           setTasks={setTasks}
           editing={editing}
         />
-        <button type="submit">Confirm Changes</button>
-        {/* <button onClick={() => addItem(job.id)}>+ Add Task</button> */}
+        <div className="flex-end">
+          <button type="submit">Confirm Changes</button>
+        </div>
       </div>
     </form>
   ) : (
     <div className="job-task-pair" onClick={toggleEdit}>
-      {/* <button onClick={toggleEdit}>Edit Job</button> */}
       <div className="job display-mode">
         <p>
           <span className="bold">{job.title}</span>, {job.employer},{" "}

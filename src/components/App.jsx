@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import PersonalInfo from "./PersonalInfo";
 import BrandStatement from "./BrandStatement";
 import Jobs from "./Jobs";
@@ -7,12 +6,17 @@ import Skills from "./Skills";
 
 function App() {
   return (
-    <div className="form">
-      <PersonalInfo />
-      <BrandStatement />
-      <Jobs />
-      <Educations />
-      <Skills />
+    <div>
+      <div className="form">
+        <PersonalInfo />
+        <BrandStatement />
+        <Jobs />
+        <Educations />
+        <Skills />
+      </div>
+      <div className="footer">
+        Created by <a href="https://github.com/naouuud">Nour Aoude</a>.
+      </div>
     </div>
   );
 }

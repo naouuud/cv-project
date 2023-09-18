@@ -21,7 +21,7 @@ export default function PersonalInfo() {
 
   return editing ? (
     <>
-      <form onSubmit={submitHandler} className="personal-info edit-mode">
+      <form onSubmit={submitHandler} className="personal-info">
         <input
           className="name"
           type="text"
@@ -47,15 +47,17 @@ export default function PersonalInfo() {
             value={personalInfo.phone}
             onChange={(e) => changeHandler(e, "phone")}
           />{" "}
-          <button type="submit">Submit</button>
+        </div>
+        <div className="flex-end">
+          <button type="submit">Confirm Changes</button>
         </div>
       </form>
       <hr />
     </>
   ) : (
     <>
-      <div onClick={toggleEdit} className="personal-info display-mode">
-        <div className="name">{personalInfo.name}</div>
+      <div onClick={toggleEdit} className="personal-info">
+        <div className="name non-input">{personalInfo.name}</div>
         <div>
           Located in <span className="bold">{personalInfo.address}</span>. Reach
           me at <span className="bold">{personalInfo.email}</span> or{" "}

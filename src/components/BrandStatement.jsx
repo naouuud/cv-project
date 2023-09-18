@@ -20,17 +20,18 @@ export default function BrandStatement() {
 
   return editing ? (
     <>
-      <form onSubmit={submitHandler} className="personal-brand edit-mode">
+      <form onSubmit={submitHandler} className="personal-brand">
         <textarea value={brandStatement} onChange={changeHandler} />
-        <button type="submit">Submit</button>
+        <div className="flex-end">
+          <button type="submit">Confirm Changes</button>
+        </div>
       </form>
       <hr />
     </>
   ) : (
     <>
-      <div onClick={toggleEdit} className="personal-brand display-mode">
+      <div onClick={toggleEdit} className="personal-brand non-input">
         <p>{brandStatement}</p>
-        {/* <button onClick={toggleEdit}>Edit Brand Statement</button> */}
       </div>
       <hr />
     </>
