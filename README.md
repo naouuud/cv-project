@@ -16,5 +16,5 @@ Each component should function independently with persistent state.
 
 Project set-up: _Vite_  
 Linting: _ESLint_  
-Formatting: _Prettier_
+Formatting: _Prettier_  
 CSS Refactoring: _CSS Minifier Tool by Toptal_
