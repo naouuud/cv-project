@@ -10,6 +10,7 @@ export default function Skills() {
 
   function addSkill() {
     setSkills([...skills, { id: skillId, description: "<New Skill>" }]);
+    setEditingList([...editingList, skillId]);
     skillId += 1;
   }
 
